@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Circle Color</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        #circle {
+            width: 100px;
+            height: 100px;
+            background-color: red; /* Initial color */
+            border-radius: 50%;
+            position: absolute;
+            transition: background-color 0.3s ease; /* Smooth color transition */
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+
+    <script>
+        const circle = document.getElementById('circle');
+        let posX = window.innerWidth / 2 - 50;
+        let posY = window.innerHeight / 2 - 50;
+        circle.style.left = `${posX}px`;
+        circle.style.top = `${posY}px`;
+
+        // Function to change the circle's color
+        function changeColor(color) {
+            circle.style.backgroundColor = color;
+        }
+
+        // Event listener for key presses
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toUpperCase(); // Ensure case insensitivity
+            const step = 10;
+
+            if (key === 'R') {
+                changeColor('red');
+            } else if (key === 'G') {
+                changeColor('green');
+            } else if (key === 'B') {
+                changeColor('blue');
+            } else if (event.key === "ArrowUp") {
+                posY -= step;
+            } else if (event.key === "ArrowDown") {
+                posY += step;
+            } else if (event.key === "ArrowLeft") {
+                posX -= step;
+            } else if (event.key === "ArrowRight") {
+                posX += step;
+            }
+            circle.style.left = `${posX}px`;
+            circle.style.top = `${posY}px`;
+        });
+    </script>
+</body>
+</html>
